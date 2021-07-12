@@ -44,15 +44,13 @@ class RequestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            recycleView.hasFixedSize()
             recycleView.layoutManager = GridLayoutManager(activity, 2)
             adapter = ImageAdapter(requireContext())
-            adapter.setImageList(imageList)
-            adapter.notifyDataSetChanged()
             recycleView.adapter = adapter
         }
         mService = Common.retrofitServices
         getImageList()
+        adapter.setImageList(imageList)
     }
 
     private fun getImageList() {

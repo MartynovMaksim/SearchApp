@@ -20,6 +20,7 @@ class ImageAdapter(
 
     fun setImageList(image: List<Image>) {
         imageList = image
+        notifyDataSetChanged()
     }
 
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
