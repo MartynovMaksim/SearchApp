@@ -7,29 +7,17 @@ import android.widget.EditText
 import androidx.fragment.app.FragmentManager
 
 class MainActivity : AppCompatActivity(), Communicator {
-    private lateinit var searchEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        searchEditText = findViewById(R.id.SearchEditText)
-        openQueryFragment()
+        openRequestFragment()
     }
 
-    override fun openQueryFragment() {
-        val fragment = QueryFragment()
+    override fun openRequestFragment() {
+        val fragment = RequestFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment).commit()
-    }
-
-    override fun openRequestFragment(genre: String) {
-        val fragment = RequestFragment.newInstance(genre)
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment).commit()
-    }
-
-    override fun setEditText(query: String) {
-        searchEditText.setText(query)
     }
 
 
