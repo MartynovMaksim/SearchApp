@@ -7,24 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.searchapp.Common.Common
-import com.example.searchapp.Interface.RetrofitServices
-import com.example.searchapp.Model.Image
-import com.example.searchapp.Model.HitsResponse
-import com.example.searchapp.databinding.FragmentRequestBinding
+import com.example.searchapp.searchrepository.SearchApi
+import com.example.searchapp.model.HitsResponse
+import com.example.searchapp.databinding.FragmentSearchBinding
+import com.example.searchapp.network.Network
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RequestFragment : Fragment() {
-    private var _binging: FragmentRequestBinding? = null
+class SearchFragment : Fragment() {
+    private var _binging: FragmentSearchBinding? = null
     private val binding get() = requireNotNull(_binging)
     private lateinit var communicator: Communicator
 
-    private lateinit var mService: RetrofitServices
-    private lateinit var adapter: ImageAdapter
+    private lateinit var mService: SearchApi
+    private lateinit var adapter: SearchAdapter
 
-    private var imageList: List<Image> = emptyList()
     private val KEY = "22385290-8633bd548612ec6195b902710"
     private val QUERY = "red flower"
 
@@ -37,20 +35,19 @@ class RequestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binging = FragmentRequestBinding.inflate(inflater, container, false)
+        _binging = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            recycleView.layoutManager = GridLayoutManager(activity, 2)
-            adapter = ImageAdapter(requireContext())
-            recycleView.adapter = adapter
+            recyclerView.layoutManager = GridLayoutManager(activity, 2)
+            adapter = SearchAdapter(requireContext())
+            recyclerView.adapter = adapter
         }
-        mService = Common.retrofitServices
+        mService = Network.makeConnectionToSearchApi
         getImageList()
-        adapter.setImageList(imageList)
     }
 
     private fun getImageList() {
@@ -63,8 +60,11 @@ class RequestFragment : Fragment() {
                 call: Call<HitsResponse?>,
                 response: Response<HitsResponse?>
             ) {
-                val hitsResponse = response.body()
-                imageList = requireNotNull(hitsResponse?.hits)
+                if (response.isSuccessful) {
+                    val hitsResponse = response.body()
+                    adapter.setImageList(requireNotNull(hitsResponse?.hits))
+                }
+
             }
         })
     }

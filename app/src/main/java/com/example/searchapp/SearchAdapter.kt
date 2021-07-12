@@ -8,35 +8,31 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.searchapp.Model.Image
+import com.example.searchapp.model.HitsResponse.Image
 
-class ImageAdapter(
-    private val context: Context,
-
-) :
-    RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
+class SearchAdapter(private val context: Context) :
+    RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     private var imageList: List<Image> = emptyList()
 
-    fun setImageList(image: List<Image>) {
-        imageList = image
+    fun setImageList(data: List<Image>) {
+        imageList = data
         notifyDataSetChanged()
     }
 
-    class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.imageView)
         val likes: TextView = itemView.findViewById(R.id.textViewLikes)
         val tags: TextView = itemView.findViewById(R.id.textViewTags)
-
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_item, parent, false)
-        return ImageViewHolder(itemView)
+        return SearchViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val listItem = imageList[position]
 
         Glide.with(context).load(listItem.previewURL).into(holder.image)
@@ -45,5 +41,5 @@ class ImageAdapter(
         holder.tags.text = listItem.tags
     }
 
-    override fun getItemCount(): Int = imageList.size!!
+    override fun getItemCount() = imageList.size
 }
