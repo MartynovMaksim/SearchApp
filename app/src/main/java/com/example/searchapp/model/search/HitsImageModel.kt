@@ -1,11 +1,14 @@
 package com.example.searchapp.model
 
-data class HitsResponse(
-    val hits: List<Image> = emptyList()
+data class PhotosResponse(
+    val photos: List<Source> = emptyList()
 ) {
-    data class Image (
-        var tags: String? = null,
-        var previewURL: String? = null,
-        var likes: String? = null,
-    )
+    data class Source(
+        var photographer: String? = null,
+        val src: List<Image> = emptyList()
+    ) {
+        data class Image(
+            var tiny: String? = null
+        )
+    }
 }

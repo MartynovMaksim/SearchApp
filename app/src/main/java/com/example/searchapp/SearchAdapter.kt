@@ -1,6 +1,7 @@
 package com.example.searchapp
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,22 +9,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.searchapp.model.HitsResponse.Image
+import com.example.searchapp.model.PhotosResponse.Source
 
 class SearchAdapter(private val context: Context) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
-    private var imageList: List<Image> = emptyList()
+    private var sourceList: List<Source> = emptyList()
 
-    fun setImageList(data: List<Image>) {
-        imageList = data
+    fun setImageList(data: List<Source>) {
+        sourceList = data
         notifyDataSetChanged()
     }
 
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.imageView)
-        val likes: TextView = itemView.findViewById(R.id.textViewLikes)
-        val tags: TextView = itemView.findViewById(R.id.textViewTags)
+        val author: TextView = itemView.findViewById(R.id.textViewAuthor)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
@@ -33,13 +33,19 @@ class SearchAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        val listItem = imageList[position]
+        val sourceListItem = sourceList[position]
+        Log.d("SearchAdapter","$sourceListItem")
+        val imageListItem: List<Source.Image> = sourceListItem.src
+        Log.d("SearchAdapter","$imageListItem")
+        val image = imageListItem.first().tiny
+        Log.d("SearchAdapter","$image")
 
-        Glide.with(context).load(listItem.previewURL).into(holder.image)
 
-        holder.likes.text = listItem.likes
-        holder.tags.text = listItem.tags
+
+        Glide.with(context).load(image).into(holder.image)
+
+        holder.author.text = sourceListItem.photographer
     }
 
-    override fun getItemCount() = imageList.size
+    override fun getItemCount() = sourceList.size
 }

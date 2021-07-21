@@ -22,6 +22,6 @@ object Network {
         return requireNotNull(retrofit)
     }
 
-    private const val BASE_URL = "https://pixabay.com/"
+    private const val BASE_URL = "https://api.pexels.com/"
     val searchApi: SearchApi = getClient(BASE_URL).create(SearchApi::class.java)
 }
