@@ -34,15 +34,8 @@ class SearchAdapter(private val context: Context) :
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val sourceListItem = sourceList[position]
-        Log.d("SearchAdapter","$sourceListItem")
-        val imageListItem: List<Source.Image> = sourceListItem.src
-        Log.d("SearchAdapter","$imageListItem")
-        val image = imageListItem.first().tiny
-        Log.d("SearchAdapter","$image")
-
-
-
-        Glide.with(context).load(image).into(holder.image)
+        
+        Glide.with(context).load(sourceListItem.src?.tiny).into(holder.image)
 
         holder.author.text = sourceListItem.photographer
     }
