@@ -5,9 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.searchapp.MainApp
 import com.example.searchapp.model.PhotosResponse
-import com.example.searchapp.network.Network
 import com.example.searchapp.searchrepository.SearchRepository
-import com.example.searchapp.searchrepository.SearchStoreRemote
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
