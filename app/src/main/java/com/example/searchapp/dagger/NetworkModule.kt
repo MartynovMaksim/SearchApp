@@ -1,4 +1,4 @@
-package com.example.searchapp
+package com.example.searchapp.dagger
 
 import dagger.Module
 import dagger.Provides
@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-class AppModule {
+class NetworkModule {
 
     @Provides
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {

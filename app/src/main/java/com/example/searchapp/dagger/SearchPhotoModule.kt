@@ -1,6 +1,5 @@
 package com.example.searchapp.dagger
 
-import com.example.searchapp.AppModule
 import com.example.searchapp.searchrepository.SearchApi
 import com.example.searchapp.searchrepository.SearchRepository
 import com.example.searchapp.searchrepository.SearchStoreRemote
@@ -8,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 
-@Module(includes = [AppModule::class])
+@Module(includes = [NetworkModule::class])
 class SearchPhotoModule {
 
     @Provides
