@@ -15,9 +15,9 @@ object Network {
             .addHeader("Authorization", "563492ad6f91700001000001b39c7e66f3d54c45b89389a8ddc4811f")
             .build()
         chain.proceed(request)
-    }.build()
-    private val httpLoggingClient =
-        OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
+    }.addInterceptor(httpLoggingInterceptor).build()
+//    private val httpLoggingClient =
+//        OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build()
 
     private fun getClient(baseUrl: String): Retrofit {
         if (retrofit == null) {
