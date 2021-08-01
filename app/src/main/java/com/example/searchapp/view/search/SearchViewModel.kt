@@ -3,7 +3,7 @@ package com.example.searchapp.view.search
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.searchapp.model.PhotosResponse
+import com.example.searchapp.model.search.data.PhotosResponse
 import com.example.searchapp.model.search.SearchRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow

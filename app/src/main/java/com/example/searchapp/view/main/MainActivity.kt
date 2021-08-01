@@ -6,6 +6,7 @@ import android.os.Bundle
 import com.example.searchapp.Application
 import com.example.searchapp.R
 import com.example.searchapp.dagger.component.AppComponent
+import com.example.searchapp.view.search.PhotoFragment
 import com.example.searchapp.view.search.SearchFragment
 
 // Непонятно, как работает
@@ -25,6 +26,12 @@ class MainActivity : AppCompatActivity(), Communicator {
 
     override fun openSearchFragment() {
         val fragment = SearchFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment).commit()
+    }
+
+    override fun openPhotoFragment(photoUrl: String) {
+        val fragment = PhotoFragment.newInstance(photoUrl)
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment).commit()
     }

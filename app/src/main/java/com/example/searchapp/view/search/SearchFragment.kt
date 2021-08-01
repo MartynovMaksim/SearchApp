@@ -16,7 +16,7 @@ import com.example.searchapp.view.search.adapter.SearchAdapter
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
-class SearchFragment : Fragment() {
+class SearchFragment : Fragment(), ItemClickListener {
     private var _binging: FragmentSearchBinding? = null
     private val binding get() = requireNotNull(_binging)
     private lateinit var communicator: Communicator
@@ -36,7 +36,7 @@ class SearchFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewModel= ViewModelProvider(this, factory)[SearchViewModel::class.java]
         _binging = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
@@ -46,11 +46,12 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             recyclerView.layoutManager = GridLayoutManager(activity, 2)
-            adapter = SearchAdapter(requireContext())
+            SearchAdapter(requireContext(), this@SearchFragment).also { adapter = it }
             recyclerView.adapter = adapter
             searchButton.setOnClickListener {
                 viewModel.search(searchEditText.text.toString())
             }
+
         }
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.searchResultFlow.collect { adapter.setImageList(it) }
@@ -60,6 +61,10 @@ class SearchFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binging = null
+    }
+
+    override fun onItemClickListener(photoUrl: String) {
+        communicator.openPhotoFragment(photoUrl)
     }
 
 }

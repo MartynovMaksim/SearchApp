@@ -1,4 +1,4 @@
-package com.example.searchapp.model
+package com.example.searchapp.model.search.data
 
 data class PhotosResponse(
     val photos: List<Source> = emptyList()
@@ -9,6 +9,7 @@ data class PhotosResponse(
         val src: Image? = null
     ) {
         data class Image(
+            var original: String? = null,
             var tiny: String? = null
         )
     }

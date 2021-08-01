@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 
-@Module(includes = [NetworkModule::class])
+@Module
 class SearchPhotoModule {
 
     @Provides

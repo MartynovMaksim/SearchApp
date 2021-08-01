@@ -1,6 +1,6 @@
 package com.example.searchapp.model.search
 
-import com.example.searchapp.model.PhotosResponse
+import com.example.searchapp.model.search.data.PhotosResponse
 
 class SearchRepository (searchStoreRemote: SearchStoreRemote) {
     private val api = searchStoreRemote.searchApi

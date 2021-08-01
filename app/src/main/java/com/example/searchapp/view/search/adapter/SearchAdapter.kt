@@ -9,9 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.searchapp.R
-import com.example.searchapp.model.PhotosResponse.Source
+import com.example.searchapp.model.search.data.PhotosResponse.Source
+import com.example.searchapp.view.search.ItemClickListener
 
-class SearchAdapter(private val context: Context) :
+class SearchAdapter(private val context: Context,
+                    private val itemClickListener: ItemClickListener) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     private var sourceList: List<Source> = emptyList()
@@ -38,6 +40,10 @@ class SearchAdapter(private val context: Context) :
         Glide.with(context).load(sourceListItem.src?.tiny).into(holder.image)
 
         holder.author.text = sourceListItem.photographer
+
+        holder.itemView.setOnClickListener {
+            sourceListItem.src?.original?.let { itemClickListener.onItemClickListener(it) }
+        }
     }
 
     override fun getItemCount() = sourceList.size
