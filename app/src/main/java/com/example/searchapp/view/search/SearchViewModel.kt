@@ -1,10 +1,10 @@
-package com.example.searchapp.presenter
+package com.example.searchapp.view.search
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.searchapp.model.PhotosResponse
-import com.example.searchapp.searchrepository.SearchRepository
+import com.example.searchapp.model.search.SearchRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow

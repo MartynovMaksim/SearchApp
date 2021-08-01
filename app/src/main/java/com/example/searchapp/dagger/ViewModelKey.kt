@@ -1,4 +1,4 @@
-package com.example.searchapp
+package com.example.searchapp.dagger
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

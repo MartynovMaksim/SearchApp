@@ -1,13 +1,13 @@
 package com.example.searchapp
 
 import android.app.Application
-import com.example.searchapp.dagger.AppComponent
-import com.example.searchapp.dagger.DaggerAppComponent
+import com.example.searchapp.dagger.component.AppComponent
+import com.example.searchapp.dagger.component.DaggerAppComponent
 
-class MainApp : Application() {
+class Application : Application() {
 
     companion object {
-        lateinit var instance: MainApp
+        lateinit var instance: com.example.searchapp.Application
     }
 
     lateinit var appComponent: AppComponent

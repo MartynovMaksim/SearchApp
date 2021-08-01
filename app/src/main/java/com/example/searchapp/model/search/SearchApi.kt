@@ -1,4 +1,4 @@
-package com.example.searchapp.searchrepository
+package com.example.searchapp.model.search
 
 import com.example.searchapp.model.PhotosResponse
 import retrofit2.http.GET

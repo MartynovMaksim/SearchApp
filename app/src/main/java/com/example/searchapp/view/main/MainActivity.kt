@@ -1,14 +1,17 @@
-package com.example.searchapp
+package com.example.searchapp.view.main
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.searchapp.dagger.AppComponent
+import com.example.searchapp.Application
+import com.example.searchapp.R
+import com.example.searchapp.dagger.component.AppComponent
+import com.example.searchapp.view.search.SearchFragment
 
 // Непонятно, как работает
 val Context.appComponent: AppComponent
     get() = when (this) {
-        is MainApp -> appComponent
+        is Application -> appComponent
         else -> this.applicationContext.appComponent
     }
 

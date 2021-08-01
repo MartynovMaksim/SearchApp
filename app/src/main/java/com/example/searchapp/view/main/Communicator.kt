@@ -1,4 +1,4 @@
-package com.example.searchapp
+package com.example.searchapp.view.main
 
 interface Communicator {
     fun openSearchFragment()

@@ -1,4 +1,4 @@
-package com.example.searchapp.presenter
+package com.example.searchapp.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,4 +1,4 @@
-package com.example.searchapp.dagger
+package com.example.searchapp.dagger.module
 
 import dagger.Module
 import dagger.Provides

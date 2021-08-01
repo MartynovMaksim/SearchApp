@@ -1,4 +1,4 @@
-package com.example.searchapp
+package com.example.searchapp.view.search
 
 import android.content.Context
 import android.os.Bundle
@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.searchapp.view.main.Communicator
+import com.example.searchapp.Application
 import com.example.searchapp.databinding.FragmentSearchBinding
-import com.example.searchapp.presenter.SearchViewModel
+import com.example.searchapp.view.search.adapter.SearchAdapter
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
@@ -28,7 +30,7 @@ class SearchFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         communicator = activity as Communicator
-        MainApp.instance.appComponent.inject(this)
+        Application.instance.appComponent.inject(this)
     }
 
     override fun onCreateView(

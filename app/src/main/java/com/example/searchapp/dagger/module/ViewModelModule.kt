@@ -1,10 +1,10 @@
-package com.example.searchapp.dagger
+package com.example.searchapp.dagger.module
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.searchapp.ViewModelKey
-import com.example.searchapp.presenter.SearchViewModel
-import com.example.searchapp.presenter.ViewModelFactory
+import com.example.searchapp.dagger.ViewModelKey
+import com.example.searchapp.view.search.SearchViewModel
+import com.example.searchapp.view.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

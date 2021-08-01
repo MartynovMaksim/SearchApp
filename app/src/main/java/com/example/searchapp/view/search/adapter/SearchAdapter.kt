@@ -1,7 +1,6 @@
-package com.example.searchapp
+package com.example.searchapp.view.search.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.searchapp.R
 import com.example.searchapp.model.PhotosResponse.Source
 
 class SearchAdapter(private val context: Context) :

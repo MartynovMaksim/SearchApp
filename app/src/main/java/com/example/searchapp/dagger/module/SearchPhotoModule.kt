@@ -1,8 +1,8 @@
-package com.example.searchapp.dagger
+package com.example.searchapp.dagger.module
 
-import com.example.searchapp.searchrepository.SearchApi
-import com.example.searchapp.searchrepository.SearchRepository
-import com.example.searchapp.searchrepository.SearchStoreRemote
+import com.example.searchapp.model.search.SearchApi
+import com.example.searchapp.model.search.SearchRepository
+import com.example.searchapp.model.search.SearchStoreRemote
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
