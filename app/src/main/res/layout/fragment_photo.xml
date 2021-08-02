@@ -6,8 +6,6 @@
     android:background="@android:color/black"
     tools:context=".view.search.PhotoFragment">
 
-//backgroundTint в родительском layout не работает
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/photo"
         android:layout_width="300dp"

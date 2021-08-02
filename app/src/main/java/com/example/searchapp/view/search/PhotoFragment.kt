@@ -1,5 +1,7 @@
 package com.example.searchapp.view.search
 
+import android.content.ClipData
+import android.content.ClipDescription
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,6 +37,16 @@ class PhotoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             Glide.with(requireContext()).load(photoUrl).placeholder(R.drawable.ic_baseline_image_24).into(photo)
+            photo.setOnLongClickListener {
+                val clipText = "Move Image"
+                val item = ClipData.Item(clipText)
+                val mimeTypes = arrayOf(ClipDescription.MIMETYPE_TEXT_PLAIN)
+                val data = ClipData(clipText,mimeTypes, item)
+
+                val dragShadowBuilder = View.DragShadowBuilder(it)
+                it.startDragAndDrop(data,dragShadowBuilder,it,0)
+                true
+            }
         }
     }
 
