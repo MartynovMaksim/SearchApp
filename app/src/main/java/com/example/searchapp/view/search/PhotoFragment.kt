@@ -2,7 +2,6 @@ package com.example.searchapp.view.search
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -17,7 +16,6 @@ class PhotoFragment : Fragment() {
     private var _binding: FragmentPhotoBinding? = null
     private val binding get() = requireNotNull(_binding)
     private var photoUrl: String? = null
-    private var lastTouchX: Float = 0F
     private var lastTouchY: Float = 0F
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,35 +42,25 @@ class PhotoFragment : Fragment() {
             photo.setOnTouchListener { v, event ->
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
-                        lastTouchX = event.rawX
                         lastTouchY = event.rawY
                     }
                     MotionEvent.ACTION_MOVE -> {
-                        val posX = event.rawX - lastTouchX
                         val posY = event.rawY - lastTouchY
-                        val l = IntArray(2)
-                        v.getLocationOnScreen(l)
-                        val x = l[0]
-                        val y = l[1]
-                        val p = IntArray(2)
-                        view.getLocationOnScreen(p)
-                        val xP = p[0]
-                        val yP = p[1]
-                        Log.d(
-                            "PhotoFragment",
-                            "Ptop = ${view.top}, Pbottom = ${view.bottom}, Pheight = ${view.height}, xView = $x, yView = $y, yParent = $yP"
-                        )
+                        val localView = IntArray(2)
+                        v.getLocationOnScreen(localView)
+                        val photoY = localView[1]
+                        val parentView = IntArray(2)
+                        view.getLocationOnScreen(parentView)
+                        val parentY = parentView[1]
                         val dh = view.height - v.height
-                        if (y > yP && y < yP + dh) {
-                        v.x += posX
-                        v.y += posY
+
+                        if (photoY > parentY && photoY < parentY + dh) {
+                            v.y += posY
                         } else {
                             v.y = v.top.toFloat()
                         }
-
                     }
                 }
-                lastTouchX = event.rawX
                 lastTouchY = event.rawY
                 true
             }
