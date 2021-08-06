@@ -2,11 +2,12 @@ package com.example.searchapp.view.search
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.searchapp.databinding.FragmentPhotoBinding
 
@@ -49,8 +50,26 @@ class PhotoFragment : Fragment() {
                     MotionEvent.ACTION_MOVE -> {
                         val posX = event.rawX - lastTouchX
                         val posY = event.rawY - lastTouchY
+                        val l = IntArray(2)
+                        v.getLocationOnScreen(l)
+                        val x = l[0]
+                        val y = l[1]
+                        val p = IntArray(2)
+                        view.getLocationOnScreen(p)
+                        val xP = p[0]
+                        val yP = p[1]
+                        Log.d(
+                            "PhotoFragment",
+                            "Ptop = ${view.top}, Pbottom = ${view.bottom}, Pheight = ${view.height}, xView = $x, yView = $y, yParent = $yP"
+                        )
+                        val dh = view.height - v.height
+                        if (y > yP && y < yP + dh) {
                         v.x += posX
                         v.y += posY
+                        } else {
+                            v.y = v.top.toFloat()
+                        }
+
                     }
                 }
                 lastTouchX = event.rawX
