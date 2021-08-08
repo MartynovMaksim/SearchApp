@@ -46,19 +46,8 @@ class PhotoFragment : Fragment() {
                     }
                     MotionEvent.ACTION_MOVE -> {
                         val posY = event.rawY - lastTouchY
-                        val localView = IntArray(2)
-                        v.getLocationOnScreen(localView)
-                        val photoY = localView[1]
-                        val parentView = IntArray(2)
-                        view.getLocationOnScreen(parentView)
-                        val parentY = parentView[1]
-                        val dh = view.height - v.height
-
-                        if (photoY > parentY && photoY < parentY + dh) {
-                            v.y += posY
-                        } else {
-                            v.y = v.top.toFloat()
-                        }
+                        val dH = (v.top - view.top) * 2.0F
+                        v.y = (v.y + posY).coerceIn(0F,dH)
                     }
                 }
                 lastTouchY = event.rawY
