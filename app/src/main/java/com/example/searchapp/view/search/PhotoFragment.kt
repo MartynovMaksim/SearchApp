@@ -47,7 +47,12 @@ class PhotoFragment : Fragment() {
                     MotionEvent.ACTION_MOVE -> {
                         val posY = event.rawY - lastTouchY
                         val dH = (v.top - view.top) * 2.0F
-                        v.y = (v.y + posY).coerceIn(0F,dH)
+                        if (v.y + posY < dH / 2) {
+                            view.alpha = ((v.y + posY).coerceIn(0F, dH / 2) / (dH / 2))
+                        } else {
+                            view.alpha = ((dH - ((v.y + posY).coerceIn(dH / 2, dH))) / (dH / 2))
+                        }
+                        v.y = (v.y + posY).coerceIn(0F, dH)
                     }
                 }
                 lastTouchY = event.rawY
