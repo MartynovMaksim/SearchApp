@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.searchapp.databinding.FragmentPhotoBinding
+import kotlin.math.round
 
 private const val PHOTO_URL = "param1"
 
@@ -48,9 +49,11 @@ class PhotoFragment : Fragment() {
                         val posY = event.rawY - lastTouchY
                         val dH = (v.top - view.top) * 2.0F
                         if (v.y + posY < dH / 2) {
-                            view.alpha = ((v.y + posY).coerceIn(0F, dH / 2) / (dH / 2))
+                            val floatAlpha = ((v.y + posY).coerceIn(0F, dH / 2) / (dH / 2))
+                            view.background.alpha = round(floatAlpha * 255).toInt()
                         } else {
-                            view.alpha = ((dH - ((v.y + posY).coerceIn(dH / 2, dH))) / (dH / 2))
+                            val floatAlpha = ((dH - ((v.y + posY).coerceIn(dH / 2, dH))) / (dH / 2))
+                            view.background.alpha = round(floatAlpha * 255).toInt()
                         }
                         v.y = (v.y + posY).coerceIn(0F, dH)
                     }
