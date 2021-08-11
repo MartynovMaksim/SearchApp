@@ -57,6 +57,11 @@ class SearchFragment : Fragment(), ItemClickListener {
             viewModel.searchResultFlow.collect { adapter.setImageList(it) }
         }
     }
+    // Временное решение, чтобы были результаты поиска, когда мы возращаемся из 2 фрагмента
+    override fun onResume() {
+        super.onResume()
+        viewModel.search(binding.searchEditText.text.toString())
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

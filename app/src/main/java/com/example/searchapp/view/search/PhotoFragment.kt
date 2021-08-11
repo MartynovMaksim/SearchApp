@@ -55,7 +55,16 @@ class PhotoFragment : Fragment() {
                             val floatAlpha = ((dH - ((v.y + posY).coerceIn(dH / 2, dH))) / (dH / 2))
                             view.background.alpha = round(floatAlpha * 255).toInt()
                         }
-                        v.y = (v.y + posY).coerceIn(0F, dH)
+                        if (v.y + posY < 0) {
+                            activity?.supportFragmentManager?.popBackStack()
+                        } else if (v.y + posY > dH) {
+                            activity?.supportFragmentManager?.popBackStack()
+                        }
+                        v.y = (v.y + posY)
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        v.y = v.top.toFloat()
+                        view.background.alpha = 255
                     }
                 }
                 lastTouchY = event.rawY

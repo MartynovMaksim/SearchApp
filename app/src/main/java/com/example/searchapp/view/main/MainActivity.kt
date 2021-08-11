@@ -27,13 +27,14 @@ class MainActivity : AppCompatActivity(), Communicator {
     override fun openSearchFragment() {
         val fragment = SearchFragment()
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment).commit()
+        transaction.add(R.id.container, fragment).commit()
     }
 
     override fun openPhotoFragment(photoUrl: String) {
         val fragment = PhotoFragment.newInstance(photoUrl)
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment).commit()
+        transaction.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
+        transaction.replace(R.id.container, fragment).addToBackStack(null).commit()
     }
 
 
