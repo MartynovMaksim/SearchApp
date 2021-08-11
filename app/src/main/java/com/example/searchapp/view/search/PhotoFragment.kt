@@ -66,11 +66,11 @@ class PhotoFragment : Fragment() {
                         view.animate().apply {
                             duration = 1000
                             view.background.alpha = 255
-                        }.start()
+                        }
                         v.animate().apply {
                             duration = 1000
                             y(v.top.toFloat())
-                        }.start()
+                        }
                     }
                 }
                 lastTouchY = event.rawY

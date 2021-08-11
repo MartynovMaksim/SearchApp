@@ -15,7 +15,7 @@ class SearchViewModel @Inject constructor(private val searchRepository: SearchRe
     ViewModel() {
 
     private val searchResultSharedFlow: MutableSharedFlow<List<PhotosResponse.Source>> =
-        MutableSharedFlow()
+        MutableSharedFlow(replay = 1)
     val searchResultFlow: SharedFlow<List<PhotosResponse.Source>> =
         searchResultSharedFlow.asSharedFlow()
 
