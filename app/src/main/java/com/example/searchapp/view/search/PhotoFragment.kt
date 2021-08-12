@@ -48,9 +48,7 @@ class PhotoFragment : Fragment() {
             photo.setOnTouchListener { v, event ->
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
-                        if (!animatorSet.isRunning) {
                             lastTouchY = event.rawY
-                        }
                     }
                     MotionEvent.ACTION_MOVE -> {
                         val posY = event.rawY - lastTouchY
@@ -79,7 +77,7 @@ class PhotoFragment : Fragment() {
                         }
                     }
                 }
-                true
+                !animatorSet.isRunning
             }
         }
     }
