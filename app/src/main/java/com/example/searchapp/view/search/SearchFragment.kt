@@ -51,7 +51,8 @@ class SearchFragment : Fragment(), ItemClickListener {
             recyclerView.adapter = adapter
             searchEditText.doAfterTextChanged {
                 if (requireNotNull(it?.length) > 2) {
-                    viewModel.search(searchEditText.text.toString())
+                    viewModel.onQueryChange(searchEditText.text.toString())
+//                    viewModel.search(searchEditText.text.toString())
                 }
             }
 
